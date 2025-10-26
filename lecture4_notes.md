@@ -1,3 +1,44 @@
+# Lecture 4 Notes
+
+## Building ARMA Models - The Box Jenkins Approach
+
+Box and Jenkins (1970) were the first to approach the task of estimating an ARMA model in a systematic manner. There are
+3 steps to their approach:
+
+1. Identification
+2. Estimation
+3. Model diagnostic testing
+
+How can we know whether we should use an AR or MA or indeed, an ARMA model? Recall that these three different
+conditional mean time series models have different patterns in the linear memory of the series.
+
+In an AR model, due to the autocorrelation function the $k$ decays exponentially to zero, in an MA process it cuts off
+abruptly at the number of lags, and in an ARMA we observe a combination. And depending on the magnitude of the
+coefficients, you will know which component, if the AR or MA coefficients are to be believed.
+
+Step 2 can be done using least squares or maximum likelihood depending on the model. Step 3 is really about
+misspecification analysis.
+
+You repeat these three steps in sequence until you find the "best" model.
+
+## A Theoretical Note: Information Criteria:
+
+- The information criteria vary according to how stiff the penalty term is. The three most popular criteria are
+  Akaike's (1974) information criterion (AIC), Schwarz's (1978) Bayesian information criterion (SBIC), and the
+  Hannan-Quinn criterion (HQAC)
+  $$AIC = ln(\hat{\sigma^2}) + \frac{2k}{T}$$
+  $$SBIC = ln(\hat{\sigma^2}) + \frac{k}{T} ln T$$
+  $$HQIC = ln(\hat{\sigma^2}) + \frac{2k}{T} ln(ln T)$$
+
+where $k = p + q + 1$ and $T$ is the population size. So we minimize the information criterion such that p is less than
+or equal to p bar and q is less than or equal to q bar.
+
+SBIC embodies a stiffer penalty term than AIC.
+
+Which IC should be preferred if they suggest different model orders?
+- SBIC is strongly consistent but inefficient
+- AIC is not consistent, and will typically pick "bigger" models
+
 ## Bits from the lecture
 
 Models generally seek to serve the data, not the other way around.
@@ -48,6 +89,6 @@ this.
 
 The MA proces dies off when you reach your number of lags in the specification. Beyond that, there is convergence to the
 long term mean. In other words, you need as much data as you need to forecast, otherwise the model says the outcome is
-the long run mean. That's all we can get out of the model. 
+the long run mean. That's all we can get out of the model.
 
 Find out how to open up range in EViews to predict portfolio using an AR(1) to January 2012.
